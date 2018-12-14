@@ -5,6 +5,52 @@
     <title>Title</title>
 </head>
 <body>
-index
+<form id="loginform">
+    <input name="username" type="text" value="admin">
+    <input name="password" type="password" value="admin">
+    <button type="button" id="bt">tj</button>
+</form>
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    let login = {
+        storage: null,
+        init: function () {
+            this.initStorage();
+
+            $("#bt").click(function () {
+                $.ajax({
+                    url: "http://localhost/fgs-api/login",
+                    type: "POST",
+                    data: $("#loginform").serialize(),
+                    dataType: "json",
+                    success: function (result) {
+                        login.storage.setItem("user_token",result.token);
+                    },
+                    error: function (result) {
+                        console.log(result);
+                    }
+                });
+            });
+        },
+        initStorage:function () {
+            if(!window.localStorage){
+                alert("浏览器不支持localstorage，为不影响正常使用，请更换新版本浏览器！");
+                console.log("浏览器不支持localstorage，为不影响正常使用，请更换新版本浏览器！");
+            }else{
+                //主逻辑业务
+                console.log("浏览器支持localstorage!");
+                this.storage = window.localStorage;
+            }
+        },
+        verificationToken:function () {
+
+        }
+    };
+$(function () {
+    login.init();
+})
+</script>
+
 </body>
 </html>
