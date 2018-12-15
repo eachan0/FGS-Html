@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form id="loginform">
+    <input name="username" type="text" value="admin">
+    <input name="password" type="password" value="admin">
+    <button type="button" id="bt">tj</button>
+</form>
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    let login = {
+        storage: null,
+        storage_enable:false,
+        init: function () {
+            this.initStorage();
+            this.storageIsEnable();
+
+            $("#bt").click(function () {
+                if (!login.storage_enable){
+                    alert("请开启浏览器localstorage,否则二无法正常使用本系统！");
+                    return false;
+                }
+                $.ajax({
+                    url: "http://localhost/fgs-api/login",
+                    type: "POST",
+                    data: $("#loginform").serialize(),
+                    dataType: "json",
+                    success: function (result) {
+                        login.storage.setItem("user_token",result.token);
+                        window.location="index.html";
+                    },
+                });
+            });
+        },
+        initStorage:function () {
+            if(!window.localStorage){
+                alert("浏览器不支持localstorage，为不影响正常使用，请更换新版本浏览器！");
+                console.log("浏览器不支持localstorage，为不影响正常使用，请更换新版本浏览器！");
+            }else{
+                console.log("浏览器支持localstorage!");
+                this.storage = window.localStorage;
+            }
+        },
+        verificationToken:function () {
+
+        },
+        storageIsEnable:function () {
+            if(!!this.storage){
+                try {
+                    this.storage.setItem("key", "value");
+                    this.storage.removeItem("key");
+                    this.storage_enable = true;
+                    console.log("浏览器启用localstorage!");
+                    return true;
+                } catch(e){
+                    alert("浏览器禁用localstorage!，请开启。");
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }
+    };
+$(function () {
+    login.init();
+})
+</script>
+
+</body>
+</html>

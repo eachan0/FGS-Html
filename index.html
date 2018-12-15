@@ -5,52 +5,32 @@
     <title>Title</title>
 </head>
 <body>
-<form id="loginform">
-    <input name="username" type="text" value="admin">
-    <input name="password" type="password" value="admin">
-    <button type="button" id="bt">tj</button>
-</form>
+    <p>welcome to FGS !</p>
+    <p>this is test data: <span id="test"></span> </p>
 
-<script src="js/jquery-3.3.1.min.js"></script>
-<script type="text/javascript">
-    let login = {
-        storage: null,
-        init: function () {
-            this.initStorage();
+    <script src="layui/layui.js"></script>
+    <script src="js/public.js"></script>
+    <script type="text/javascript">
+        layui.use(['layer'],function () {
+            let layer = layui.layer,
+                $ = layui.$;
 
-            $("#bt").click(function () {
-                $.ajax({
-                    url: "http://localhost/fgs-api/login",
-                    type: "POST",
-                    data: $("#loginform").serialize(),
-                    dataType: "json",
-                    success: function (result) {
-                        login.storage.setItem("user_token",result.token);
-                    },
-                    error: function (result) {
-                        console.log(result);
-                    }
-                });
+            let index = {
+                init:function () {
+                    $.ajax({
+                        url:ip+"test",
+                        type:"get",
+                        success:function (result) {
+                            layer.closeAll("loading");
+                            $('#test').html(result.msg)
+                        }
+                    });
+                }
+            };
+            $(function () {
+                index.init();
             });
-        },
-        initStorage:function () {
-            if(!window.localStorage){
-                alert("浏览器不支持localstorage，为不影响正常使用，请更换新版本浏览器！");
-                console.log("浏览器不支持localstorage，为不影响正常使用，请更换新版本浏览器！");
-            }else{
-                //主逻辑业务
-                console.log("浏览器支持localstorage!");
-                this.storage = window.localStorage;
-            }
-        },
-        verificationToken:function () {
-
-        }
-    };
-$(function () {
-    login.init();
-})
-</script>
-
+        });
+    </script>
 </body>
 </html>
