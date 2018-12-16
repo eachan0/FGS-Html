@@ -1,75 +1,160 @@
 <!DOCTYPE html>
 <html lang="cn">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<form id="loginform">
-    <input name="username" type="text" value="admin">
-    <input name="password" type="password" value="admin">
-    <button type="button" id="bt">tj</button>
-</form>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>FGS-后台登录</title>
+		<link rel="shortcut icon" href="favicon.ico" />
+		<link rel="bookmark" href="favicon.ico" />
+		<link rel="stylesheet" href="layui/css/layui.css" />
+		<link rel="stylesheet" href="css/admin/login.css" />
+	</head>
 
-<script src="js/jquery-3.3.1.min.js"></script>
-<script type="text/javascript">
-    let login = {
-        storage: null,
-        storage_enable:false,
-        init: function () {
-            this.initStorage();
-            this.storageIsEnable();
+	<body>
+		<div class="layui-container">
+			<div class="layadmin-user-login-main center">
+				<form id="login" class="layadmin-user-login-box layadmin-user-login-body layui-form">
+					<div class="layui-form-item">
+						<div class="logo">
+							<img src="img-svg/icon-spring-boot.svg" />
+						</div>
+						<h3 class="title">欢迎登陆FGS后台管理系统</h3>
+					</div>
+					<div class="layui-form-item">
+						<input name="username" lay-verify="required" placeholder="账号" class="my-layui-input" type="text" autocomplete="off" value="admin">
+					</div>
+					<div class="layui-form-item">
+						<input name="password" lay-verify="required|password" placeholder="密码" class="my-layui-input" type="password" value="admin">
+					</div>
+					<div class="layui-form-item">
+						<div class="layui-row">
+							<div class="layui-col-xs7">
+								<input type="hidden" name="code" />
+								<input type="text" name="codeStr" id="LAY-user-login-vercode" lay-verify="required" placeholder="图形验证码" class="my-layui-input" value="test">
+							</div>
+							<div class="layui-col-xs5">
+								<div style="margin-left: 10px;">
+									<img id="codeImg" src="https://www.oschina.net/action/user/captcha" class="layadmin-user-login-codeimg" id="LAY-user-get-vercode">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<button class="my-layui-btn" lay-submit lay-filter="LAY-user-login-submit">Login</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="layui/layui.js"></script>
+	<script type="text/javascript" src="js/public.js"></script>
+	<script type="text/javascript">
+		layui.use(['layer', 'form', 'element', 'jquery'], function() {
+			let layer = layui.layer,
+				form = layui.form,
+				$ = layui.$;
 
-            $("#bt").click(function () {
-                if (!login.storage_enable){
-                    alert("请开启浏览器localstorage,否则二无法正常使用本系统！");
-                    return false;
-                }
-                $.ajax({
-                    url: "http://localhost/fgs-api/login",
-                    type: "POST",
-                    data: $("#loginform").serialize(),
-                    dataType: "json",
-                    success: function (result) {
-                        login.storage.setItem("user_token",result.token);
-                        window.location="index.html";
-                    },
-                });
-            });
-        },
-        initStorage:function () {
-            if(!window.localStorage){
-                alert("浏览器不支持localstorage，为不影响正常使用，请更换新版本浏览器！");
-                console.log("浏览器不支持localstorage，为不影响正常使用，请更换新版本浏览器！");
-            }else{
-                console.log("浏览器支持localstorage!");
-                this.storage = window.localStorage;
-            }
-        },
-        verificationToken:function () {
+			let login = {
+				init: function () {
+					this.initStorage();
+					this.storageIsEnable();
+					this.verificationToken();
+					form.on('submit(LAY-user-login-submit)', function(data) {
+						if (!login.storageIsEnable()){
+							alert("请开启浏览器localstorage,否则二无法正常使用本系统！");
+							return false;
+						}
+						$.ajax({
+							url: IP+"login",
+							type: "POST",
+							contentType: "application/x-www-form-urlencoded",
+							data: $("#login").serialize(),
+							dataType: "json",
+							success: function (result) {
+								localStorage.setItem("user_token",result.token);
+								parent.window.location="index.html";
+							},
+						});
+						return false;
+					});
+					form.verify({
+						password: [
+							/^[\S]{5,16}$/, '密码必须5到16位，且不能出现空格'
+						]
+					});
 
-        },
-        storageIsEnable:function () {
-            if(!!this.storage){
-                try {
-                    this.storage.setItem("key", "value");
-                    this.storage.removeItem("key");
-                    this.storage_enable = true;
-                    console.log("浏览器启用localstorage!");
-                    return true;
-                } catch(e){
-                    alert("浏览器禁用localstorage!，请开启。");
-                    return false;
-                }
-            }else{
-                return false;
-            }
-        }
-    };
-$(function () {
-    login.init();
-})
-</script>
+					$("#codeImg").click(function(){
+						//TODO:
+					});
+				},
+				initStorage:function () {
+					if(!localStorage){
+						alert("浏览器不支持localstorage，为不影响正常使用，请更换新版本浏览器！");
+						console.log("浏览器不支持localstorage，为不影响正常使用，请更换新版本浏览器！");
+					}else{
+						console.log("浏览器支持localstorage!");
+					}
+				},
+				verificationToken:function () {
+					let user_token = localStorage.getItem("user_token");
+					if (!!user_token && user_token.trim().length !== 0) {
+						$.ajax({
+							type: 'GET',
+							headers: {'token': user_token},
+							async: false,
+							url: IP + 'tokenIsValid',
+							success: function(data) {
+								parent.window.location.href = 'index.html';
+							},
+							error: function(xhr, textStatus, errorThrown) {
+								layer.closeAll("loading");
+								console.log("token not valid");
+								if(xhr.status == 401) {
+									localStorage.removeItem("user_token");
+								}
+							}
+						});
+					}
+					else {
+						console.log("token is empty");
+					}
+				},
+				storageIsEnable:function () {
+					if(!!localStorage){
+						try {
+							localStorage.setItem("key", "value");
+							localStorage.removeItem("key");
+							console.log("浏览器启用localstorage!");
+							return true;
+						} catch(e){
+							alert("浏览器禁用localstorage!，请开启。");
+							return false;
+						}
+					}else{
+						return false;
+					}
+				},
+				initVerifyCode:function () {
+					return;
+					//TODO:
+					$.ajax({
+						type: 'GET',
+						async: false,
+						url: IP + 'getVerifyCode?histCode='+$("input[name='code']").val(),
+						success: function(data) {
+							layer.closeAll('loading');
+							$("input[name='code']").val(data.code);
+							$("#codeImg").attr('src',data.codeStr);
+						}
+					});
+				}
+			};
+			$(function () {
+				login.init();
+			});
+		});
+	</script>
+	<script>
+	</script>
 
-</body>
 </html>

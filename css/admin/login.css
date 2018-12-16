@@ -1,0 +1,210 @@
+.layui-layout-body {
+  overflow: auto; }
+
+#LAY-user-login,
+.layadmin-user-display-show {
+  display: block !important; }
+
+.layadmin-user-login {
+  position: relative;
+  left: 0;
+  top: 0;
+  padding: 110px 0;
+  min-height: 100%;
+  box-sizing: border-box; }
+
+.layadmin-user-login-main {
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box; }
+
+.layadmin-user-login-box {
+  padding: 25px;
+  background: #FFFFFF;
+  border-radius: 5px; }
+
+.layadmin-user-login-header {
+  text-align: center; }
+
+.layadmin-user-login-header h2 {
+  margin-bottom: 10px;
+  font-weight: 300;
+  font-size: 30px;
+  color: #000; }
+
+.layadmin-user-login-header p {
+  font-weight: 300;
+  color: #999; }
+
+.layadmin-user-login-body .layui-form-item {
+  position: relative; }
+
+.layadmin-user-login-icon {
+  position: absolute;
+  left: 1px;
+  top: 1px;
+  width: 38px;
+  line-height: 36px;
+  text-align: center;
+  color: #d2d2d2; }
+
+.layadmin-user-login-body .layui-form-item .layui-input {
+  padding-left: 38px; }
+
+.layadmin-user-login-codeimg {
+  max-height: 38px;
+  width: 100%;
+  cursor: pointer;
+  box-sizing: border-box; }
+
+.layadmin-user-login-other {
+  position: relative;
+  font-size: 0;
+  line-height: 38px;
+  padding-top: 20px; }
+
+.layadmin-user-login-other > * {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+  font-size: 14px; }
+
+.layadmin-user-login-other .layui-icon {
+  position: relative;
+  top: 2px;
+  font-size: 26px; }
+
+.layadmin-user-login-other a:hover {
+  opacity: 0.8; }
+
+.layadmin-user-jump-change {
+  float: right; }
+
+.layadmin-user-login-footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  line-height: 30px;
+  padding: 20px;
+  text-align: center;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.5); }
+
+.layadmin-user-login-footer span {
+  padding: 0 5px; }
+
+.layadmin-user-login-footer a {
+  padding: 0 5px;
+  color: rgba(0, 0, 0, 0.5); }
+
+.layadmin-user-login-footer a:hover {
+  color: black; }
+
+.layadmin-user-login-main[bgimg] {
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.05); }
+
+.ladmin-user-login-theme {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center; }
+
+.ladmin-user-login-theme ul {
+  display: inline-block;
+  padding: 5px;
+  background-color: #fff; }
+
+.ladmin-user-login-theme ul li {
+  display: inline-block;
+  vertical-align: top;
+  width: 64px;
+  height: 43px;
+  cursor: pointer;
+  transition: all .3s;
+  -webkit-transition: all .3s;
+  background-color: #f2f2f2; }
+
+.ladmin-user-login-theme ul li:hover {
+  opacity: 0.9; }
+
+.layui-form-checkbox[lay-skin="primary"]:hover i {
+  border-color: #FF5722;
+  color: #fff; }
+
+.layui-form-checked[lay-skin="primary"] i {
+  border-color: #FF5722;
+  background-color: #FF5722;
+  color: #fff; }
+
+.layui-icon-login-qq {
+  color: #3492ED; }
+
+.layui-tab {
+  text-align: center !important; }
+
+.layui-tab-title {
+  border: none; }
+
+.layui-tab-brief > .layui-tab-title .layui-this {
+  color: #FF5722; }
+
+.layui-tab-brief > .layui-tab-more li.layui-this::after,
+.layui-tab-brief > .layui-tab-title .layui-this::after {
+  border-bottom: 2px solid #FF5722; }
+
+body {
+  background: #242424; }
+
+.content {
+  padding: 0 10px;
+  background: red; }
+
+.my-layui-input {
+  outline: none;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  box-sizing: border-box;
+  padding: 0 12px;
+  border: 2px solid #68BD45;
+  box-shadow: 0 0 6px rgba(104, 189, 69, 0.8);
+  border-radius: 4px; }
+
+.logo {
+  display: block;
+  text-align: center; }
+
+.logo img {
+  height: 75px; }
+
+.title {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 22px;
+  color: #68BD45; }
+
+.my-layui-btn {
+  outline: none;
+  filter: chroma(color=#000000);
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  color: #FFFFFF;
+  font-weight: bold;
+  font-size: 16px;
+  border: 2px solid #68BD45;
+  border-radius: 4px;
+  background: #68BD45;
+  cursor: pointer; }
+
+.center {
+  margin-top: 60px; }
+
+@media screen and (min-width: 768px) {
+  .layadmin-user-login-main {
+    width: 380px; } }
+
+/*# sourceMappingURL=login.css.map */

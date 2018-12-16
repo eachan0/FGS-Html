@@ -1,4 +1,4 @@
-const ip = "http://127.0.0.1/fgs-api/";
+const IP = "http://127.0.0.1/fgs-api/";
 layui.use(["layer"],function () {
     let layer = layui.layer,
         $ = layui.$;
@@ -16,8 +16,7 @@ layui.use(["layer"],function () {
         },
         error: function(xhr, textStatus, errorThrown) {
             layer.closeAll('loading');
-            //按钮禁用
-            $(".layui-submit").attr('disabled', false);
+
             let msg = "";
             if(!xhr.responseText) {
                 msg = "连接超时";

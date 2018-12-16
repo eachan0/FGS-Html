@@ -18,13 +18,16 @@
             let index = {
                 init:function () {
                     $.ajax({
-                        url:ip+"test",
+                        url:IP+"tokenIsValid",
                         type:"get",
                         success:function (result) {
                             layer.closeAll("loading");
                             $('#test').html(result.msg)
                         }
                     });
+                },
+                getMenu:function () {
+                    
                 }
             };
             $(function () {
