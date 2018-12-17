@@ -31,6 +31,9 @@ layui.use(["layer"],function () {
                 icon: 2,
                 time: 2000
             });
+        },
+        complete:function () {
+            layer.closeAll("loading");
         }
     });
 });

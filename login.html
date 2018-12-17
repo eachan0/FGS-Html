@@ -107,7 +107,7 @@
 								parent.window.location.href = 'index.html';
 							},
 							error: function(xhr, textStatus, errorThrown) {
-								layer.closeAll("loading");
+
 								console.log("token not valid");
 								if(xhr.status == 401) {
 									localStorage.removeItem("user_token");

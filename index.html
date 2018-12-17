@@ -1,39 +1,100 @@
 <!DOCTYPE html>
 <html lang="cn">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <p>welcome to FGS !</p>
-    <p>this is test data: <span id="test"></span> </p>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>FGS-后台管理系统</title>
+		<link rel="shortcut icon" href="favicon.ico" />
+		<link rel="bookmark" href="favicon.ico" />
+		<link rel="stylesheet" href="layui/css/layui.css" />
+		<link rel="stylesheet" href="css/admin/admin.css" />
+		<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="layui/layui.js"></script>
+		<script type="text/javascript" src="js/public.js"></script>
+	</head>
 
-    <script src="layui/layui.js"></script>
-    <script src="js/public.js"></script>
-    <script type="text/javascript">
-        layui.use(['layer'],function () {
-            let layer = layui.layer,
-                $ = layui.$;
+	<body class="layui-layout-body">
+		<div class="layui-layout layui-layout-admin">
+			<!-- 左侧导航区域（可配合layui已有的垂直导航） #495060-->
+			<div class="layui-side layui-unselect">
+				<div class="my-layui-logo" lay-href="home/console.html">
+					<span>FGS管理系统</span>
+				</div>
+				<ul class="layui-nav-myitem">
 
-            let index = {
-                init:function () {
-                    $.ajax({
-                        url:IP+"tokenIsValid",
-                        type:"get",
-                        success:function (result) {
-                            layer.closeAll("loading");
-                            $('#test').html(result.msg)
-                        }
-                    });
-                },
-                getMenu:function () {
-                    
-                }
-            };
-            $(function () {
-                index.init();
-            });
-        });
-    </script>
-</body>
+				</ul>
+			</div>
+			<!-- 内容主体 -->
+			<div class="layui-body" style="overflow-y: hidden;">
+				<!-- 头部区域（可配合layui已有的水平导航） -->
+				<header class="layui-header layui-unselect">
+					<div class="layui-nav">
+						<ul class="layui-nav-left">
+							<li class="layui-nav-item layadmin-flexible" lay-unselect="">
+								<a href="javascript:;" layadmin-event="flexible" title="侧边伸缩">
+									<i class="layui-icon layui-icon-shrink-right" id="LAY_app_flexible"></i>
+								</a>
+							</li>
+							<li class="layui-nav-item" lay-unselect="">
+								<a href="http://www.bblog.vip/" target="_blank" title="前台">
+									<i class="layui-icon layui-icon-website"></i>
+								</a>
+							</li>
+						</ul>
+						<ul class="layui-nav-right">
+							<li class="layui-nav-item" id="user_info" lay-unselect="">
+								<a><img id="headimgurl" src="img/login.jpg" class="layui-nav-img"><span id="nickname">昵称</span></a>
+								<dl class="layui-nav-child">
+									<dd>
+										<a href="javascript:;">修改密码</a>
+									</dd>
+									<hr>
+									<dd>
+										<a href="javascript:;">退出</a>
+									</dd>
+								</dl>
+							</li>
+							<li class="layui-nav-item" lay-unselect="">
+								<a href="javascript:;" layadmin-event="theme"><i class="layui-icon layui-icon-more-vertical"></i></a>
+							</li>
+						</ul>
+					</div>
+				</header>
+				<!-- 主体导航栏 -->
+				<nav class="layui-tab" lay-filter="layui-tab" id="wrapper">
+					<ul class="layui-tab-title layui-unselect" id="layui-tabs">
+						<li class="layui-this layui-tab-index" lay-id='index'><i class="layui-icon layui-icon-home"></i> 首页</li>
+					</ul>
+					<div id="fengexian">
+						<!-- 分割线（去除title的border-bottom后） -->
+					</div>
+					<!-- 主体内容 -->
+					<div class="layui-tab-content">
+						<div class="layui-tab-item layui-show">
+							<iframe scrolling="auto" frameborder="0" src="welcome.html" style="width:100%;height:100%;"></iframe>
+						</div>
+					</div>
+				</nav>
+			</div>
+			<div class="layadmin-body-shade" layadmin-event="shade"></div>
+			<!--右键菜单的源-->
+			<div class="contextMenu" id="myMenu1">
+				<ul>
+					<li id="deletemyself">关闭当前标签页</li>
+					<li id="deleteother">关闭其他标签页</li>
+					<li id="deleteall">关闭所有标签页</li>
+				</ul>
+			</div>
+		</div>
+		<!--<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>-->
+		<!--<script type="text/javascript" src="layui/layui.js"></script>-->
+		<!-- 三方 -->
+		<script type="text/javascript" src="js/iscroll.js"></script>
+		<script type="text/javascript" src="js/jquery.contextmenu.r2.js"></script>
+        
+		<!--<script type="text/javascript" src="js/public.js"></script>-->
+		<script type="text/javascript" src="js/admin/index.js"></script>
+		<script type="text/javascript" src="js/admin/index-init-data.js"></script>
+	</body>
+
 </html>

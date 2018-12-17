@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p>welcome to FGS !</p>
+    <p>this is test data: <span id="test"></span> </p>
+
+    <script src="layui/layui.js"></script>
+    <script src="js/public.js"></script>
+    <script type="text/javascript">
+        layui.use(['layer'],function () {
+            let layer = layui.layer,
+                $ = layui.$;
+
+            let index = {
+                init:function () {
+                    $.ajax({
+                        url:IP+"tokenIsValid",
+                        type:"get",
+                        success:function (result) {
+                            layer.closeAll("loading");
+                            $('#test').html(result.msg)
+                        }
+                    });
+                },
+                getMenu:function () {
+                    
+                }
+            };
+            $(function () {
+                index.init();
+            });
+        });
+    </script>
+</body>
+</html>
