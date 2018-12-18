@@ -1,0 +1,99 @@
+.btn_right {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  -webkit-transform: translateX(0) translateY(-50%);
+  transform: translateX(0) translateY(-50%); }
+
+.layui-fluid {
+  margin: 15px auto; }
+
+.layui-form-checkbox[lay-skin="primary"]:hover i {
+  border-color: #1E9FFF;
+  color: #fff; }
+
+.layui-form-checked[lay-skin="primary"] i {
+  border-color: #1E9FFF;
+  background-color: #1E9FFF;
+  color: #fff; }
+
+body .layui-layer-molv .layui-layer-title {
+  background: #1E9FFF; }
+
+.layui-red {
+  color: #f00 !important;
+  font-weight: bold; }
+
+.checked {
+  background: #FFE3D1; }
+
+#file_table tbody {
+  color: #00b7d3; }
+
+#file_table tbody a {
+  color: #00b7d3; }
+
+#file_table tbody tr:hover {
+  cursor: pointer; }
+
+#file_table tbody tr td > i {
+  margin: 0 5px; }
+
+#file_table tbody tr td i.layui-icon-file {
+  color: #E81123; }
+
+#file_table tbody tr td i.layui-icon-picture {
+  color: #0EB2CC; }
+
+#file_table tbody tr td i.layui-icon-file-b {
+  color: #979A9C; }
+
+#file_table tbody tr.head td span a {
+  padding: 0 5px; }
+
+#file_table tbody tr.head td span a:hover {
+  background: rgba(255, 204, 0, 0.25); }
+
+#upload_content, #create_folder, #show_file {
+  padding: 0 20px; }
+
+#upload_content .layui-row, #create_folder .layui-row {
+  margin: 20px 0; }
+
+.oss-intl-lines {
+  padding: 10px 0;
+  line-height: 1.6;
+  font-size: 12px;
+  color: #9b9ea0; }
+
+.layui-upload-drag {
+  width: 80%;
+  padding: 30px 10%; }
+
+#lablesManager span:hover, #classifysManager span:hover {
+  cursor: pointer; }
+
+#lablesManager span, #classifysManager span {
+  margin-bottom: 10px;
+  color: #FFFFFF;
+  font-size: 14px;
+  display: inline-block;
+  padding: 4px 10px;
+  min-width: 30px;
+  text-align: center;
+  margin-right: 10px;
+  line-height: 24px; }
+  #lablesManager span i, #classifysManager span i {
+    display: none;
+    position: relative;
+    top: 2px;
+    margin-left: 4px; }
+  #lablesManager span:hover i, #classifysManager span:hover i {
+    display: inline-block;
+    color: #FFFFFF; }
+
+#add_lable_classify, #upd_lable_classify {
+  padding: 20px 20px 0 0;
+  display: none; }
+
+/*# sourceMappingURL=common.css.map */

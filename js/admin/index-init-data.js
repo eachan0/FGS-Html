@@ -55,7 +55,7 @@ layui.use(['layer'], function () {
             let menuHtml = "";
             $.each(menus, function (idx, obj) {
                 let p = '<li>' +
-                    '<dt><i class="' + obj.ico + '"></i>&nbsp;' + obj.menuName +
+                    '<dt><i class="layui-icon ' + obj.ico + '"></i>&nbsp;' + obj.menuName +
                     '<i class="layui-icon layui-icon-triangle-r"></i></dt><dl>'
                 $.each(obj.children, function (idx1, child) {
                     p += "<dd>" +

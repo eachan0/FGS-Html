@@ -36,4 +36,8 @@ layui.use(["layer"],function () {
             layer.closeAll("loading");
         }
     });
+
+    $('#refresh').on('click',function () {
+        window.location.reload();
+    })
 });
