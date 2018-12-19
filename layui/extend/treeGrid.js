@@ -4,7 +4,7 @@
  @Author：lrd
  */
 layui.config({
-    base: '/FGS-Html/layui/extend/'
+    base: '../../layui/extend/'
 }).extend({
     dltable:'dltable'
 }).define(['laytpl', 'laypage','dltable', 'layer', 'form'], function(exports){

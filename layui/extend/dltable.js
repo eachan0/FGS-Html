@@ -2154,6 +2154,6 @@ layui.define(['laytpl', 'laypage', 'layer', 'form'], function(exports){
     thisTable.config = {};
     //自动完成渲染
     table.init();
-    layui.link('/FGS-Html/layui/extend/treeGrid.css');//引入css
+    layui.link('../../layui/extend/treeGrid.css');//引入css
     exports(MOD_NAME, table);
 });

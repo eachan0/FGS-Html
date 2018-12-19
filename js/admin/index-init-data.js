@@ -35,7 +35,12 @@ layui.use(['layer'], function () {
                     if (!xhr.responseText) {
                         msg = "连接超时";
                     } else {
-                        let response = JSON.parse(xhr.responseText);
+                        let response = null;
+                        if(typeof xhr.responseText =="string"){
+                            response = JSON.parse(xhr.responseText);
+                        }else {
+                            response = xhr.responseText;
+                        }
                         msg = response.message;
                         if (response.code == 401) {
                             localStorage.removeItem("user_token");

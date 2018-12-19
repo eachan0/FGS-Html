@@ -1,4 +1,5 @@
-const IP = "http://127.0.0.1/fgs-api/";
+const IP = "/fgs-api/";
+let layerMsg = null;
 layui.use(["layer"],function () {
     let layer = layui.layer,
         $ = layui.$;
@@ -40,4 +41,16 @@ layui.use(["layer"],function () {
     $('#refresh').on('click',function () {
         window.location.reload();
     })
+    layerMsg ={
+        msg:function (code,type,t) {
+            type = type?type:"操作";
+            t = parseInt(t?t:1000);
+            if (code ===0){
+                layer.msg(type+'成功', {icon: 6,time:t});
+            }else {
+                layer.msg(type+'失败', {icon: 5,time:t});
+            }
+            return false;
+        }
+    }
 });

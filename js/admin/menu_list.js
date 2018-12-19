@@ -1,5 +1,5 @@
 layui.config({
-    base: '/FGS-Html/layui/extend/'
+    base: '../../layui/extend/'
 }).extend({
     treeGrid:'treeGrid'
 }).use(['jquery','treeGrid','layer'], function(){
@@ -7,7 +7,7 @@ layui.config({
         treeGrid = layui.treeGrid,//很重要
         layer = layui.layer;
 
-
+    let ids = [];
     let menu = {
         init:function () {
             this.tableInit();
@@ -73,8 +73,11 @@ layui.config({
         delMenu:function (obj) {
             layer.confirm("你确定删除数据吗？如果存在下级节点则一并删除，此操作不能撤销！", {icon: 3, title:'提示'},
                 function(index){//确定回调
-                    console.log(obj);
+                    ids = [];
+                    menu.getIds(obj.data);
+                    menu.submitDelAction();
                     layer.close(index);
+                    // menu.tableReload();
                 },function (index) {//取消回调
                     layer.close(index);
                 }
@@ -90,16 +93,48 @@ layui.config({
                 type:"PUT",
                 data:temp,
                 success:function (result) {
-                    if (result.code ===0){
-                        layer.msg('修改成功', {icon: 6,time:800});
-                    }else {
-                        layer.msg('修改失败', {icon: 5,time:800});
-                    }
+                    layerMsg.msg(result.code,'修改',800);
                 }
             })
         },
         submitAddAction:function (obj) {
-            console.log(obj.data);
+            $.ajax({
+                type:'post',
+                url:IP+'menu/menu',
+                data:JSON.stringify(obj.data),
+                success:function (result) {
+                    layerMsg.msg(result.code,'添加',1500);
+                    menu.tableReload();
+                }
+            });
+        },
+        submitDelAction:function (){
+            if (!ids || ids.length===0){
+                return false;
+            }else {
+                console.log(ids);
+                $.ajax({
+                    url:IP+'menu/menu',
+                    type:'delete',
+                    contentType:null,
+                    data:{ids:ids},
+                    success:function (result) {
+                        console.log(result)
+                    }
+                });
+            }
+        },
+        tableReload:function (id) {
+            id = id?id:"treeTable" ;
+            treeGrid.reload('treeTable');
+        },
+        getIds:function (obj) {
+            ids.push(obj.id);
+            if (obj.children){
+                obj.children.forEach(function (e) {
+                   menu.getIds(e);
+                });
+            }
         }
     };
 
