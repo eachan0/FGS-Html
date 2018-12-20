@@ -41,6 +41,9 @@ layui.use(["layer"],function () {
     $('#refresh').on('click',function () {
         window.location.reload();
     });
+    $("#back").on('click',function () {
+        window.history.back(-1);
+    });
     layerMsg ={
         msg:function (code,type,t) {
             this.closeAll();
@@ -48,10 +51,11 @@ layui.use(["layer"],function () {
             t = parseInt(t?t:1000);
             if (code ===0){
                 layer.msg(type+'成功', {icon: 6,time:t});
+                return true;
             }else {
                 layer.msg(type+'失败', {icon: 5,time:t});
+                return false;
             }
-            return false;
         },
         closeAll:function (type) {
             type = type?type:'loading';

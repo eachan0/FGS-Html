@@ -1,15 +1,69 @@
 <!DOCTYPE html>
 <html lang="cn">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>角色列表</title>
-    <link rel="shortcut icon" href="../../favicon.ico" />
-    <link rel="bookmark" href="../../favicon.ico" />
-    <link rel="stylesheet" href="../../layui/css/layui.css" />
+    <link rel="shortcut icon" href="../../favicon.ico"/>
+    <link rel="bookmark" href="../../favicon.ico"/>
+    <link rel="stylesheet" href="../../layui/css/layui.css"/>
+    <link rel="stylesheet" href="../../css/admin/common.css"/>
+    <link rel="stylesheet" href="../../css/admin/user_list.css"/>
 </head>
+
 <body>
+<div class="layui-fluid">
+    <div class="layui-row">
+        <div class="layui-col-md12">
+            <div class="layui-card layui-anim layui-anim-upbit">
+                <div class="layui-card-header">角色管理
+                    <span class="btn_right">
+								<button type="button" id="deleteall" title="批量删除"
+                                        class="layui-btn layui-btn-danger layui-btn-xs" style="display: none;"><i
+                                        class="layui-icon">&#xe640;</i>批量删除</button>
+								<button type="button" id="adduser" title="添加角色"
+                                        class="layui-btn layui-btn-normal layui-btn-xs"><i
+                                        class="layui-icon">&#xe608;</i>添加</button>
+								<button type="button" id="refresh" title="刷新"
+                                        class="layui-btn layui-btn-normal layui-btn-xs"><i
+                                        class="layui-icon layui-icon-refresh"></i></button>
+							</span>
+                </div>
+                <div class="layui-card-body">
+                    <header>
+                        <form class="layui-form" action="">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">角色名:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="name" placeholder="角色标识" autocomplete="off"
+                                           class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <div class="layui-input-inline" style="width: 190px;">
+                                    <button class="layui-btn layui-btn-normal" lay-submit lay-filter="formDemo">查询
+                                    </button>
+                                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                </div>
+                            </div>
+                        </form>
+                    </header>
+                    <div>
+                        <table id="demo" lay-filter="test"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i
+            class="layui-icon layui-icon-delete"></i>删除</a>
+</script>
 <script type="text/javascript" src="../../js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="../../layui/layui.js"></script>
 <script type="text/javascript" src="../../js/public.js"></script>
+<script type="text/javascript" src="../../js/admin/role_list.js"></script>
 </body>
 </html>
