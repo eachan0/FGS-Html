@@ -40,9 +40,10 @@ layui.use(["layer"],function () {
 
     $('#refresh').on('click',function () {
         window.location.reload();
-    })
+    });
     layerMsg ={
         msg:function (code,type,t) {
+            this.closeAll();
             type = type?type:"操作";
             t = parseInt(t?t:1000);
             if (code ===0){
@@ -51,6 +52,10 @@ layui.use(["layer"],function () {
                 layer.msg(type+'失败', {icon: 5,time:t});
             }
             return false;
+        },
+        closeAll:function (type) {
+            type = type?type:'loading';
+            layer.closeAll(type);
         }
     }
 });

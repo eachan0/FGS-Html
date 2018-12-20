@@ -46,7 +46,6 @@ layui.config({
             });
             treeGrid.on('tool(treeTable)',function (obj) {
                 if(obj.event === 'del'){//删除行
-                    obj.del();
                     menu.delMenu(obj);
                 }else if(obj.event==="add"){//添加行
                     menu.addMenu(obj.data);
@@ -77,9 +76,7 @@ layui.config({
                     menu.getIds(obj.data);
                     menu.submitDelAction();
                     layer.close(index);
-                    // menu.tableReload();
-                },function (index) {//取消回调
-                    layer.close(index);
+                    menu.tableReload();
                 }
             );
         },
@@ -112,14 +109,13 @@ layui.config({
             if (!ids || ids.length===0){
                 return false;
             }else {
-                console.log(ids);
                 $.ajax({
                     url:IP+'menu/menu',
                     type:'delete',
-                    contentType:null,
-                    data:{ids:ids},
+                    data:JSON.stringify(ids),
                     success:function (result) {
-                        console.log(result)
+                        layerMsg.msg(result.code,'删除',1000);
+                        menu.tableReload();
                     }
                 });
             }
@@ -129,6 +125,7 @@ layui.config({
             treeGrid.reload('treeTable');
         },
         getIds:function (obj) {
+            //递归获取id
             ids.push(obj.id);
             if (obj.children){
                 obj.children.forEach(function (e) {
