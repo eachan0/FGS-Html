@@ -15,23 +15,31 @@ layui.use(["layer"],function () {
         beforeSend: function(xhr) {
             layer.load(1);
         },
-        error: function(xhr, textStatus, errorThrown) {
-            layer.closeAll('loading');
-
+        error: function(xhr) {
             let msg = "";
-            if(!xhr.responseText) {
-                msg = "连接超时";
-            } else {
-                let response = JSON.parse(xhr.responseText);
-                msg = response.message;
-                if(response.code == 401) {
+            try {
+                let msg = "";
+                let code = xhr.status;
+                if (code == 403) {
+                    msg = "权限不足";
+                } else if (code == 500) {
+                    msg = '服务器错误';
+                } else if (code == 404) {
+                    msg = '资源不存在';
+                } else if (code == 401) {
                     localStorage.removeItem("user_token");
+                    msg = "请先登陆!"
                 }
+                console.log(xhr.responseText);
+                layer.msg(msg, {
+                    icon: 2,
+                    time: 2000
+                });
+            }catch (e) {
+                return false;
+            }finally {
+                layer.closeAll("loading");
             }
-            layer.msg(msg, {
-                icon: 2,
-                time: 2000
-            });
         },
         complete:function () {
             layer.closeAll("loading");
@@ -63,3 +71,28 @@ layui.use(["layer"],function () {
         }
     }
 });
+let publicJs = {
+    getRoles:function () {
+        let data;
+        $.ajax({
+           type:'get',
+           url:IP + "role/roles",
+           async:false,
+           success:function (result) {
+               data = result.data;
+           }
+        });
+        return data;
+    },
+    getRolesByUserId:function (id) {
+        $.ajax({
+            type:'get',
+            url:IP + "role/roles"+id,
+            data:{id:id},
+            async:false,
+            success:function (result) {
+                console.log(result);
+            }
+        });
+    }
+}
