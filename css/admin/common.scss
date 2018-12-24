@@ -112,3 +112,41 @@ body .layui-layer-molv .layui-layer-title {
     padding: 20px 20px 0 0;
     display: none;
 }
+
+.layui-fluid{
+    .layui-card-body{
+        form{
+            .layui-form-item{
+                display: inline-block;
+                label{
+                    display: inline-block;
+                    width: auto;
+                    padding-left: 0;
+                }
+                .layui-input-inline{
+                    width: 100px;
+                }
+            }
+        }
+    }
+}
+
+.layui-form-onswitch {
+    border-color: #1e9fff;
+    background-color: #1e9fff;
+}
+.layui-form-checked span, .layui-form-checked:hover span {
+    background-color: #1e9fff;
+}
+.layui-form-checked i, .layui-form-checked:hover i {
+    color: #1e9fff;
+}
+.layui-laypage .layui-laypage-curr .layui-laypage-em {
+    background-color: #1e9fff;
+}
+.layui-form-item .layui-form-checkbox[lay-skin="primary"] {
+    margin-left: 5px;
+}
+.layui-laydate .layui-this {
+    background-color: #1e9fff !important;
+}

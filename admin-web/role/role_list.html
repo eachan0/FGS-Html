@@ -8,7 +8,6 @@
     <link rel="bookmark" href="../../favicon.ico"/>
     <link rel="stylesheet" href="../../layui/css/layui.css"/>
     <link rel="stylesheet" href="../../css/admin/common.css"/>
-    <link rel="stylesheet" href="../../css/admin/user_list.css"/>
 </head>
 
 <body>
@@ -18,7 +17,7 @@
             <div class="layui-card layui-anim layui-anim-upbit">
                 <div class="layui-card-header">角色管理
                     <span class="btn_right">
-								<button type="button" id="deleteall" title="批量删除"
+								<button type="button" id="delAll" title="批量删除"
                                         class="layui-btn layui-btn-danger layui-btn-xs" style="display: none;"><i
                                         class="layui-icon">&#xe640;</i>批量删除</button>
 								<button type="button" id="adduser" title="添加角色"
@@ -56,8 +55,11 @@
         </div>
     </div>
 </div>
+<script type="text/html" id="checkboxTpl">
+    <input type="checkbox" name="lock" value="{{d.id}}" title="锁定" lay-filter="lockDemo" {{ !d.isEnable ? 'checked' : '' }}>
+</script>
 <script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="edit">拥有菜单</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i
             class="layui-icon layui-icon-delete"></i>删除</a>
 </script>

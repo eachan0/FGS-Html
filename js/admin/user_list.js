@@ -71,7 +71,7 @@ layui.use(['layer', 'form', 'laydate', 'table'], function () {
                 response: {
                     statusName: 'code',
                     statusCode: 0,
-                    msgName: 'message',
+                    msgName: 'msg',
                     countName: 'count',
                     dataName: 'data'
                 },
