@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="cn">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>role_add</title>
+		<link rel="shortcut icon" href="../../favicon.ico"/>
+		<link rel="bookmark" href="../../favicon.ico"/>
+		<link rel="stylesheet" href="../../layui/css/layui.css"/>
+		<link rel="stylesheet" href="../../css/admin/common.css"/>
+		<link rel="stylesheet" href="../../css/admin/update_my_base_info.css" />
+		<link rel="stylesheet" href="../../css/metroStyle/metroStyle.css" />
+	</head>
+
+	<body style="background: #F6F6F6;">
+		<div class="layui-fluid">
+			<div class="layui-row">
+				<div class="layui-col-md12">
+					<div class="layui-card layui-anim layui-anim-upbit">
+						<div class="layui-card-header">添加角色
+							<span class="btn_right">
+								<button type="button" id="back" title="返回" class="layui-btn layui-btn-normal layui-btn-xs" onclick="javascript:window.history.back(-1);"><i class="layui-icon">&#xe65c;</i>返回上一页</button>
+								<button type="button" id="refresh" title="刷新" class="layui-btn layui-btn-normal layui-btn-xs"><i class="layui-icon layui-icon-refresh"></i></button>
+							</span>
+						</div>
+						<div class="layui-card-body">
+							<form class="layui-form" action="">
+								<div class="layui-form-item layui-row">
+									<label class="my_layui-form-label layui-col-md1 layui-col-sm1 layui-col-xs12">名称：</label>
+									<div class="layui-col-md10 layui-col-sm10 layui-col-xs12">
+										<input type="text" name="roleName" required lay-verify="required" autocomplete="off" placeholder="角色名称" class="layui-input">
+									</div>
+								</div>
+								<div class="layui-form-item layui-row">
+									<label class="my_layui-form-label layui-col-md1 layui-col-sm1 layui-col-xs12">角色状态：</label>
+									<div class="layui-col-md10 layui-col-sm10 layui-col-xs12">
+										<select name="isEnable" lay-verify="required">
+											<option value="false">禁用</option>
+											<option value="true" selected>启用</option>
+										</select>
+									</div>
+								</div>
+								<div class="layui-form-item layui-row">
+									<label class="my_layui-form-label layui-col-md1 layui-col-sm1 layui-col-xs12">权限：</label>
+									<div class="layui-col-md10 layui-col-sm10 layui-col-xs12">
+										<ul id="treeDemo" class="ztree" style="border: 1px solid rgb(230,230,230);border-radius: 2px;"></ul>
+									</div>
+								</div>
+								<div class="layui-form-item layui-row">
+									<label class="my_layui-form-label layui-col-md1 layui-col-sm1 layui-col-xs1 layui-hide-xs">&nbsp;</label>
+									<button class="layui-btn layui-btn-normal" lay-submit lay-filter="formDemo"></i><span>确认添加</span></button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="../../layui/layui.js"></script>
+		<script type="text/javascript" src="../../js/public.js"></script>
+		<script type="text/javascript" src="../../js/jquery.ztree.core.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.ztree.excheck.min.js"></script>
+
+		<script>
+			layui.use(['layer', 'form'], function() {
+				let layer = layui.layer,
+					$ = layui.$,
+					form = layui.form;
+				let setting = {
+					check: {
+						enable: true
+					},
+					data: {
+						key: {
+							name: "menuName"
+						},
+						simpleData: {
+							enable: true,
+							idKey: "id",
+							pIdKey: "parentid",
+							rootPId: 0
+						}
+					}
+				};
+
+				let roleAdd = {
+					zTreeObj:null,
+					init: function f() {
+						this.zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, roleAdd.getMenus());
+						this.formEvents();
+					},
+					formEvents:function () {
+						//表单监听提交
+						form.on('submit(formDemo)', function(data) {
+							let dict_data = data.field;
+							let checkedNodes = roleAdd.zTreeObj.getCheckedNodes();
+							let permissionIds=[];
+							$.each(checkedNodes, function(idx,obj) {
+								permissionIds.push(obj.id)
+							});
+							dict_data.menus=permissionIds;
+							console.log(dict_data);
+							roleAdd.submitAddAction(dict_data);
+							return false;
+						});
+					},
+					getMenus:function () {
+						let menus;
+						$.ajax({
+							type:'post',
+							url:IP+"menu/list",
+							async:false,
+							success:function (result) {
+								menus = result.data;
+							}
+						});
+						return menus;
+					},
+					submitAddAction:function (obj) {
+						$.ajax({
+							url: IP + 'role/role',
+							type: 'POST',
+							data: JSON.stringify(obj),
+							success: function(result) {
+								layer.msg(result.message, {
+									icon: 1,
+									time: 1000
+								}, function() {
+									// window.history.back(-1);
+								});
+							}
+						});
+					}
+				}
+
+				$(function () {
+					roleAdd.init();
+				});
+			});
+		</script>
+	</body>
+
+</html>

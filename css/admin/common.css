@@ -96,15 +96,6 @@ body .layui-layer-molv .layui-layer-title {
   padding: 20px 20px 0 0;
   display: none; }
 
-.layui-fluid .layui-card-body form .layui-form-item {
-  display: inline-block; }
-  .layui-fluid .layui-card-body form .layui-form-item label {
-    display: inline-block;
-    width: auto;
-    padding-left: 0; }
-  .layui-fluid .layui-card-body form .layui-form-item .layui-input-inline {
-    width: 100px; }
-
 .layui-form-onswitch {
   border-color: #1e9fff;
   background-color: #1e9fff; }
@@ -123,5 +114,20 @@ body .layui-layer-molv .layui-layer-title {
 
 .layui-laydate .layui-this {
   background-color: #1e9fff !important; }
+
+.layui-form-radio > i:hover, .layui-form-radioed > i {
+  color: #1e9fff; }
+
+.layui-form-select dl dd.layui-this {
+  background-color: #1e9fff; }
+
+.layui-fluid .layui-card-body form .layui-form-item {
+  display: inline-block; }
+  .layui-fluid .layui-card-body form .layui-form-item label {
+    display: inline-block;
+    width: auto;
+    padding-left: 0; }
+  .layui-fluid .layui-card-body form .layui-form-item .layui-input-inline {
+    width: 100px; }
 
 /*# sourceMappingURL=common.css.map */
