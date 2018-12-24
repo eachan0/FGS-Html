@@ -156,8 +156,6 @@ layui.use(['layer', 'form', 'laydate', 'table'], function () {
             });
             //监听提交
             form.on('submit(formDemo)', function (data) {
-                console.log(data);
-                return false;
                 table.reload('idTest', {
                     where: data.field
                 });
