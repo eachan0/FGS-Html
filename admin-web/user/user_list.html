@@ -23,6 +23,12 @@
 			.layui-laypage .layui-laypage-curr .layui-laypage-em {
 				background-color: #1e9fff;
 			}
+			.layui-form-item .layui-form-checkbox[lay-skin="primary"] {
+				margin-left: 5px;
+			}
+			.layui-laydate .layui-this {
+				background-color: #1e9fff !important;
+			}
 		</style>
 	</head>
 
@@ -90,6 +96,17 @@
 				</div>
 			</div>
 		</div>
+
+		<div id="roles" style="display: none">
+			<form class="layui-form" action="">
+				<div class="layui-form-item" pane="">
+					<label class="layui-form-label">选择角色</label>
+					<div class="layui-input-block" id="rolesDiv">
+					</div>
+				</div>
+			</form>
+		</div>
+
 		<script type="text/html" id="switchTpl">
 			<input type="checkbox" name="sex" value="{{d.id}}" lay-skin="switch" lay-text="女|男" lay-filter="sexDemo" {{ d.sex=="0" ? 'checked' : '' }}>
 		</script>

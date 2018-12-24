@@ -61,8 +61,13 @@ layui.use(["layer"],function () {
                 layer.msg(type+'成功', {icon: 6,time:t});
                 return true;
             }else {
-                layer.msg(type+'失败', {icon: 5,time:t});
-                return false;
+                if(code == 300){
+                    layer.msg('数据已存在', {icon: 5,time:t});
+                    return false;
+                }else{
+                    layer.msg(type+'失败', {icon: 5,time:t});
+                    return false;
+                }
             }
         },
         closeAll:function (type) {
@@ -85,14 +90,16 @@ let publicJs = {
         return data;
     },
     getRolesByUserId:function (id) {
+        let data;
         $.ajax({
             type:'get',
-            url:IP + "role/roles"+id,
+            url:IP + "role/roleByUserId/"+id,
             data:{id:id},
             async:false,
             success:function (result) {
-                console.log(result);
+                data = result.data;
             }
         });
+        return data;
     }
 }
