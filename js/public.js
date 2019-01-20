@@ -101,5 +101,10 @@ let publicJs = {
             }
         });
         return data;
+    },
+    closeCurrentWindow:function (obj) {
+        window.opener=null;
+        window.open('','_self');
+        window.close();
     }
 }

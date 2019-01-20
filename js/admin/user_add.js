@@ -85,7 +85,7 @@ layui.use(['layer', 'form'], function() {
                 }
             });
         }
-    }
+    };
     $(function () {
         userAdd.init();
     });

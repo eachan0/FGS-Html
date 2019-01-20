@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,oBAAoB;EAChB,WAAW,EAAE,IAAI;;AAErB,SAAS;EACL,UAAU,EAAE,cAAa;EACzB,KAAK,EAAE,OAAO;EACd,MAAM,EAAE,IAAI;;AAEhB,QAAQ;EACJ,UAAU,EAAE,IAAI;EAChB,SAAS,EAAE,IAAI;EACf,QAAQ,EAAE,MAAM;EAChB,aAAa,EAAE,GAAG;;AAEtB,oDAAgD;EAC5C,KAAK,EAAE,OAAO;;AAElB,yBAAyB;EACrB,oBAAoB;IAChB,UAAU,EAAE,KAAK",
-"sources": ["update_my_base_info.scss"],
-"names": [],
-"file": "update_my_base_info.css"
-}

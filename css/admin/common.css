@@ -121,13 +121,25 @@ body .layui-layer-molv .layui-layer-title {
 .layui-form-select dl dd.layui-this {
   background-color: #1e9fff; }
 
-.layui-fluid .layui-card-body form .layui-form-item {
-  display: inline-block; }
-  .layui-fluid .layui-card-body form .layui-form-item label {
-    display: inline-block;
-    width: auto;
-    padding-left: 0; }
-  .layui-fluid .layui-card-body form .layui-form-item .layui-input-inline {
-    width: 100px; }
+.my_layui-form-label {
+  line-height: 38px; }
+
+.readonly {
+  background: 0 0 !important;
+  color: #c2c2c2;
+  border: none; }
+
+#headimg {
+  max-height: 40px;
+  max-width: 40px;
+  overflow: hidden;
+  border-radius: 50%; }
+
+.layui-form-radio > i:hover, .layui-form-radioed > i {
+  color: #1E9FFF; }
+
+@media (min-width: 768px) {
+  .my_layui-form-label {
+    text-align: right; } }
 
 /*# sourceMappingURL=common.css.map */
