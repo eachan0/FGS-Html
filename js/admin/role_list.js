@@ -6,11 +6,15 @@ layui.use(['layer', 'form', 'table'], function () {
         table = layui.table;
 
     let role = {
+        zTreeObj:null,
         init: function () {
             this.tableInit();
             this.tableEvents();
             this.formEvents();
             this.bindingEvents();
+        },
+        ztreeInit:function(obj){
+            this.zTreeObj = $.fn.zTree.init($("#treeDemo"), ztree_menu_setting, obj);
         },
         tableInit: function () {
             //数据表格实例
@@ -75,8 +79,18 @@ layui.use(['layer', 'form', 'table'], function () {
                     role.submitDelAction(id);
                     return false;
                 } else if (layEvent === 'edit') {
-                    console.log(obj);
-                    return false;
+                    role.ztreeInit(publicJs.menuSort(role.getHasMenus(data.id),publicJs.getMenus()));
+                    let index = layer.open({
+                        type:1,
+                        title:'修改权限',
+                        content:$('#menuModel'),
+                        btn:['提交','取消'],
+                        area: ['300px', '400px'],
+                        closeBtn: 2,
+                        yes:function () {
+                            role.submitEditMenuAction(index,data.id);
+                        }
+                    });
                 }
             });
             //复选框批量操作
@@ -178,9 +192,39 @@ layui.use(['layer', 'form', 'table'], function () {
                 layer.msg('修改失败', {icon: 5, time: 1000});
                 this.tableReload({});
             }
+        },
+        getHasMenus:function (id) {
+            let hasMenus = null;
+            $.ajax({
+                url:IP+'menu/getMenuByRoleId/'+id,
+                type:'get',
+                async: false,
+                success:function (data) {
+                    hasMenus = data.data;
+                }
+            });
+            return hasMenus;
+        },
+        submitEditMenuAction:function (index,id) {
+            let menus = this.zTreeObj.getCheckedNodes();
+            let ids = [];
+            if (menus.length!==0) {
+                $.each(menus,function (idnex,item) {
+                   ids.push(item.id);
+                });
+            }
+            ids.push(id);
+            $.ajax({
+                url:IP+'rolemenu/rm',
+                type:'put',
+                data:JSON.stringify(ids),
+                success:function (res) {
+                    layerMsg.msg(res.code,'修改');
+                }
+            });
+            layer.close(index);
         }
     };
-
     $(function () {
         role.init();
     });

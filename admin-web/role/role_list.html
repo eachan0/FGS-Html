@@ -8,6 +8,7 @@
     <link rel="bookmark" href="../../favicon.ico"/>
     <link rel="stylesheet" href="../../layui/css/layui.css"/>
     <link rel="stylesheet" href="../../css/admin/common.css"/>
+    <link rel="stylesheet" href="../../css/metroStyle/metroStyle.css" />
     <link rel="stylesheet" href="../../css/admin/search.css">
 </head>
 
@@ -56,17 +57,24 @@
         </div>
     </div>
 </div>
+
+
 <script type="text/html" id="checkboxTpl">
     <input type="checkbox" name="lock" value="{{d.id}}" title="锁定" lay-filter="lockDemo" {{ !d.isEnable ? 'checked' : '' }}>
 </script>
 <script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="edit">拥有菜单</a>
+    <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="edit">编辑权限</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i
             class="layui-icon layui-icon-delete"></i>删除</a>
 </script>
 <script type="text/javascript" src="../../js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="../../layui/layui.js"></script>
 <script type="text/javascript" src="../../js/public.js"></script>
+<script type="text/javascript" src="../../js/jquery.ztree.core.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.ztree.excheck.min.js"></script>
 <script type="text/javascript" src="../../js/admin/role_list.js"></script>
 </body>
+<div id="menuModel" class="" style="display: none">
+    <ul id="treeDemo" class="ztree" style="border: 1px solid rgb(230,230,230);border-radius: 2px;"></ul>
+</div>
 </html>

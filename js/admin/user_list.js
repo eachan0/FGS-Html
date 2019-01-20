@@ -276,6 +276,7 @@ layui.use(['layer', 'form', 'laydate', 'table'], function () {
                 title: "角色",
                 content: $("#roles"),
                 btn: ['确定', '取消'],
+                closeBtn: 2,
                 area: ['400px', '200px'],
                 yes: function () {
                     user.submitRolesAction(id,index);

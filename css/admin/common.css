@@ -141,5 +141,7 @@ body .layui-layer-molv .layui-layer-title {
 @media (min-width: 768px) {
   .my_layui-form-label {
     text-align: right; } }
+.layui-laydate .layui-this {
+  background-color: #1E9FFF !important; }
 
 /*# sourceMappingURL=common.css.map */

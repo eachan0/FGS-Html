@@ -1,6 +1,6 @@
 const IP = "/fgs-api/";
 let layerMsg = null;
-layui.use(["layer"],function () {
+layui.use(["layer"], function () {
     let layer = layui.layer,
         $ = layui.$;
     $.ajaxSetup({
@@ -12,10 +12,10 @@ layui.use(["layer"],function () {
         headers: {
             "token": localStorage.getItem("user_token")
         },
-        beforeSend: function(xhr) {
+        beforeSend: function (xhr) {
             layer.load(1);
         },
-        error: function(xhr) {
+        error: function (xhr) {
             let msg = "";
             try {
                 let msg = "";
@@ -28,83 +28,127 @@ layui.use(["layer"],function () {
                     msg = '资源不存在';
                 } else if (code == 401) {
                     localStorage.removeItem("user_token");
-                    msg = "请先登陆!"
+                    if (xhr.responseJSON.message) {
+                        msg = xhr.responseJSON.message;
+                    } else {
+                        msg = "请先登陆!"
+                    }
                 }
                 console.log(xhr.responseText);
                 layer.msg(msg, {
                     icon: 2,
                     time: 2000
                 });
-            }catch (e) {
+            } catch (e) {
                 return false;
-            }finally {
+            } finally {
                 layer.closeAll("loading");
             }
         },
-        complete:function () {
+        complete: function () {
             layer.closeAll("loading");
         }
     });
 
-    $('#refresh').on('click',function () {
+    $('#refresh').on('click', function () {
         window.location.reload();
     });
-    $("#back").on('click',function () {
+    $("#back").on('click', function () {
         window.history.back(-1);
     });
-    layerMsg ={
-        msg:function (code,type,t) {
+    layerMsg = {
+        msg: function (code, type, t) {
             this.closeAll();
-            type = type?type:"操作";
-            t = parseInt(t?t:1000);
-            if (code ===0){
-                layer.msg(type+'成功', {icon: 6,time:t});
+            type = type ? type : "操作";
+            t = parseInt(t ? t : 1500);
+            if (code === 0) {
+                layer.msg(type + '成功', {icon: 1, time: t});
                 return true;
-            }else {
-                if(code == 300){
-                    layer.msg('数据已存在', {icon: 5,time:t});
+            } else {
+                if (code == 300) {
+                    layer.msg('数据已存在', {icon: 5, time: t});
                     return false;
-                }else{
-                    layer.msg(type+'失败', {icon: 5,time:t});
+                } else {
+                    layer.msg(type + '失败', {icon: 2, time: t});
                     return false;
                 }
             }
         },
-        closeAll:function (type) {
-            type = type?type:'loading';
+        closeAll: function (type) {
+            type = type ? type : 'loading';
             layer.closeAll(type);
         }
     }
 });
 let publicJs = {
-    getRoles:function () {
+    getRoles: function () {
         let data;
         $.ajax({
-           type:'get',
-           url:IP + "role/roles",
-           async:false,
-           success:function (result) {
-               data = result.data;
-           }
-        });
-        return data;
-    },
-    getRolesByUserId:function (id) {
-        let data;
-        $.ajax({
-            type:'get',
-            url:IP + "role/roleByUserId/"+id,
-            data:{id:id},
-            async:false,
-            success:function (result) {
+            type: 'get',
+            url: IP + "role/roles",
+            async: false,
+            success: function (result) {
                 data = result.data;
             }
         });
         return data;
     },
-    closeCurrentWindow:function (obj) {
-        window.opener=null;
-        window.open('','_self');
+    getRolesByUserId: function (id) {
+        let data;
+        $.ajax({
+            type: 'get',
+            url: IP + "role/roleByUserId/" + id,
+            data: {id: id},
+            async: false,
+            success: function (result) {
+                data = result.data;
+            }
+        });
+        return data;
+    },
+    getMenus: function f() {
+        let menus = null;
+        $.ajax({
+            url: IP + 'menu/list',
+            async: false,
+            success: function (data) {
+                menus = data.data;
+            }
+        });
+        return menus;
+    },
+    menuSort: function (hasMenu, countMenu) {
+        if (!!hasMenu) {
+            $.each(countMenu, function (i, cItem) {
+                $.each(hasMenu, function (j, hItem) {
+                    if (cItem.id == hItem.id) {
+                        cItem.checked = true;
+                        return false;
+                    }
+                });
+            });
+        }
+        return countMenu;
+    },
+    closeCurrentWindow: function (obj) {
+        window.opener = null;
+        window.open('', '_self');
         window.close();
     }
 }
+let ztree_menu_setting = {
+    check: {
+        enable: true
+    },
+    data: {
+        key: {
+            name: "menuName"
+        },
+        simpleData: {
+            enable: true,
+            idKey: "id",
+            pIdKey: "parentid",
+            rootPId: 0
+        }
+    }
+};
