@@ -1,13 +1,15 @@
 //JavaScript代码区域
-layui.use(['layer', 'element'], function() {
+layui.use(['layer', 'element','form'], function() {
 	let layer = layui.layer,
 		$ = layui.$,
 		element = layui.element;
-        
+
+
     $(function(){
         index.init();
+
     });
-    
+
     let index = {
         item:null,
         parentItems:null,
@@ -213,4 +215,5 @@ layui.use(['layer', 'element'], function() {
             });
         }
     }
+
 });

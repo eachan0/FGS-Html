@@ -144,4 +144,7 @@ body .layui-layer-molv .layui-layer-title {
 .layui-laydate .layui-this {
   background-color: #1E9FFF !important; }
 
+.layui-nav .layui-nav-child dd.layui-this a, .layui-nav-child dd.layui-this {
+  background-color: #1e9fff; }
+
 /*# sourceMappingURL=common.css.map */

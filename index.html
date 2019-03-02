@@ -8,6 +8,11 @@
 		<link rel="bookmark" href="favicon.ico" />
 		<link rel="stylesheet" href="layui/css/layui.css" />
 		<link rel="stylesheet" href="css/admin/admin.css" />
+		<style>
+			.layui-nav .layui-nav-child dd.layui-this a, .layui-nav-child dd.layui-this {
+				background-color: #fff;
+			}
+		</style>
 	</head>
 
 	<body class="layui-layout-body">
@@ -33,7 +38,7 @@
 								</a>
 							</li>
 							<li class="layui-nav-item" lay-unselect="">
-								<a href="http://www.bblog.vip/" target="_blank" title="前台">
+								<a href="" target="_blank" title="前台">
 									<i class="layui-icon layui-icon-website"></i>
 								</a>
 							</li>
@@ -43,11 +48,11 @@
 								<a><img id="headimgurl" src="img/login.jpg" class="layui-nav-img"><span id="nickname">昵称</span></a>
 								<dl class="layui-nav-child">
 									<dd>
-										<a href="javascript:;">修改密码</a>
+										<a href="javascript:void(0);">修改密码</a>
 									</dd>
 									<hr>
 									<dd>
-										<a href="javascript:;">退出</a>
+										<a href="javascript:void(0);">退出</a>
 									</dd>
 								</dl>
 							</li>
@@ -83,13 +88,40 @@
 				</ul>
 			</div>
 		</div>
+
+		<form id="changepwd" class="layui-form" style="margin: 10px;display: none"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+			<div class="layui-form-item">
+				<label class="layui-form-label">旧密码：</label>
+				<div class="layui-input-block">
+					<input value="123456" type="password" name="oldPass" placeholder="请输入旧密码" autocomplete="off" class="layui-input" lay-verify="required|pass">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">新密码：</label>
+				<div class="layui-input-block">
+					<input value="admin1" type="password" name="newPass" placeholder="请输入新密码" autocomplete="off" class="layui-input" lay-verify="required|pass|newpass">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">确认密码：</label>
+				<div class="layui-input-block">
+					<input value="admin1" type="password" name="rePass" placeholder="请输入确认密码" autocomplete="off" class="layui-input" lay-verify="required|pass|repass">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-input-block">
+					<button class="layui-btn layui-btn-normal" lay-submit lay-filter="subchangepwd">立即提交</button>
+					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+				</div>
+			</div>
+		</form>
 		<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 		<script type="text/javascript" src="layui/layui.js"></script>
 		<script type="text/javascript" src="js/public.js"></script>
 		<!-- 三方 -->
 		<script type="text/javascript" src="js/iscroll.js"></script>
 		<script type="text/javascript" src="js/jquery.contextmenu.r2.js"></script>
-        
+
 		<!--<script type="text/javascript" src="js/public.js"></script>-->
 		<script type="text/javascript" src="js/admin/index.js"></script>
 		<script type="text/javascript" src="js/admin/index-init-data.js"></script>
