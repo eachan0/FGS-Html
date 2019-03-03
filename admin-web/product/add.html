@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="cn">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>商品添加</title>
+		<link rel="shortcut icon" href="../../favicon.ico" />
+		<link rel="bookmark" href="../../favicon.ico" />
+		<link rel="stylesheet" href="../../layui/css/layui.css" />
+		<link rel="stylesheet" href="../../css/admin/common.css" />
+	</head>
+
+	<body style="background: #F6F6F6;">
+		<div class="layui-fluid">
+			<div class="layui-row">
+				<div class="layui-col-md12">
+					<div class="layui-card layui-anim layui-anim-upbit">
+						<div class="layui-card-header">添加商品
+							<span class="btn_right">
+								<button type="button" id="back" title="返回" class="layui-btn layui-btn-normal layui-btn-xs"><i class="layui-icon">&#xe65c;</i>返回上一页</button>
+								<button type="button" id="refresh" title="刷新" class="layui-btn layui-btn-normal layui-btn-xs"><i class="layui-icon layui-icon-refresh"></i></button>
+							</span>
+						</div>
+						<div class="layui-card-body">
+							<form class="layui-form" id="addProductForm" action="">
+								<div class="layui-form-item layui-row">
+									<label class="my_layui-form-label layui-col-md1 layui-col-sm1 layui-col-xs12">商品名称：</label>
+									<div class="layui-col-md10 layui-col-sm10 layui-col-xs12">
+										<input type="text" name="name" required lay-verify="required" autocomplete="off" placeholder="请输入用户名" class="layui-input">
+									</div>
+								</div>
+								<div class="layui-form-item layui-row">
+									<label class="my_layui-form-label layui-col-md1 layui-col-sm1 layui-col-xs12">商品图片：</label>
+									<div class="layui-col-md10 layui-col-sm10 layui-col-xs12">
+										<input type="file" name="file">
+									</div>
+								</div>
+
+								<div class="layui-form-item layui-row">
+									<label class="my_layui-form-label layui-col-md1 layui-col-sm1 layui-col-xs12">商品描述：</label>
+									<div class="layui-col-md10 layui-col-sm10 layui-col-xs12">
+										<textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
+									</div>
+								</div>
+								<div class="layui-form-item layui-row">
+									<label class="my_layui-form-label layui-col-md1 layui-col-sm1 layui-col-xs12">商品单价：</label>
+									<div class="layui-col-md10 layui-col-sm10 layui-col-xs12">
+										<input type="text" name="price" required lay-verify="required" placeholder="￥" autocomplete="off" class="layui-input">
+									</div>
+								</div>
+								<div class="layui-form-item layui-row">
+									<label class="my_layui-form-label layui-col-md1 layui-col-sm1 layui-col-xs12">团购单价：</label>
+									<div class="layui-col-md10 layui-col-sm10 layui-col-xs12">
+										<input type="text" name="tuanPrice" required lay-verify="required" placeholder="￥" autocomplete="off" class="layui-input">
+									</div>
+								</div>
+								<div class="layui-form-item layui-row">
+									<label class="my_layui-form-label layui-col-md1 layui-col-sm1 layui-col-xs1 layui-hide-xs">&nbsp;</label>
+									<button class="layui-btn layui-btn-normal" lay-submit lay-filter="formDemo" id="user_add_btn"></i><span>提交</span></button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="../../layui/layui.js"></script>
+		<script type="text/javascript" src="../../js/public.js"></script>
+		<script type="text/javascript" src="../../js/admin/product_add.js"></script>
+	</body>
+
+</html>

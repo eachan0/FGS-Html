@@ -101,11 +101,11 @@ layui.use(['layer', 'form', 'laydate', 'table'], function () {
                     let temp = {};
                     temp.id = data.id;
                     temp.username = data.username;
-                    users.push(temp)
+                    users.push(temp);
                     user.submitResetAction(users);
                 } else if (layEvent === 'del') {
                     let ids = [];
-                    ids.push(data.id)
+                    ids.push(data.id);
                     user.submitDelAction(ids);
                 } else {
                     user.initRolesModel(data.id);
