@@ -15,7 +15,7 @@
 			<div class="layui-row">
 				<div class="layui-col-md12">
 					<div class="layui-card layui-anim layui-anim-upbit">
-						<div class="layui-card-header">添加商品
+						<div class="layui-card-header">修改商品
 							<span class="btn_right">
 								<button type="button" id="back" title="返回" class="layui-btn layui-btn-normal layui-btn-xs"><i class="layui-icon">&#xe65c;</i>返回上一页</button>
 								<button type="button" id="refresh" title="刷新" class="layui-btn layui-btn-normal layui-btn-xs"><i class="layui-icon layui-icon-refresh"></i></button>
@@ -45,6 +45,15 @@
 									<label class="my_layui-form-label layui-col-md1 layui-col-sm1 layui-col-xs12">商品描述：</label>
 									<div class="layui-col-md10 layui-col-sm10 layui-col-xs12">
 										<textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
+									</div>
+								</div>
+								<div class="layui-form-item layui-row">
+									<label class="my_layui-form-label layui-col-md1 layui-col-sm1 layui-col-xs12">商品类型：</label>
+									<div class="layui-col-md10 layui-col-sm10 layui-col-xs12">
+										<select name="status" lay-verify="required">
+											<option value="1">热销</option>
+											<option value="2">新品</option>
+										</select>
 									</div>
 								</div>
 								<div class="layui-form-item layui-row">

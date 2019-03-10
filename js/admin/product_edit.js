@@ -16,9 +16,7 @@ layui.use(['layer','form'], function() {
             this.bindingEvents();
         },
         initData:function(){
-            for (let key in this.data){
-               $("#addProductForm [name="+key+"]").val(product_edit.data[key]);
-            }
+            form.val('pro_form',this.data);
             $("#img").attr("src",product_edit.data.photo);
         },
         formEvents:function () {
