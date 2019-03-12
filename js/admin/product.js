@@ -1,7 +1,8 @@
-layui.use(['layer', 'form', 'table'], function () {
+layui.use(['layer', 'form', 'table','laydate'], function () {
     let layer = layui.layer,
         $ = layui.$,
         form = layui.form,
+        laydate = layui.laydate,
         table = layui.table;
 
     $(function () {
@@ -9,11 +10,14 @@ layui.use(['layer', 'form', 'table'], function () {
     });
 
     let product = {
+        myLock:"POST",
+        index:null,
         init:function () {
             this.tableInit();
             this.bindingEvents();
             this.formEvents();
             this.tableEvents();
+            this.dateInit();
         },
         tableInit: function () {
             //数据表格实例
@@ -78,10 +82,33 @@ layui.use(['layer', 'form', 'table'], function () {
                 }
             });
         },
+        dateInit:function(){
+            laydate.render({
+                elem: "#time1",
+                type:"datetime",
+            });
+            laydate.render({
+                elem: "#time2",
+                type:"datetime",
+            });
+        },
         formEvents:function(){
             form.on('submit(formDemo)', function (data) {
                 table.reload('idTest', {
                     where: data.field
+                });
+                return false;
+            });
+            form.on('submit(formDemo1)', function (data) {
+                $.ajax({
+                    type:product.myLock,
+                    url:IP+"fightgroup/fightgroup",
+                    data:JSON.stringify(data.field),
+                    success:function (res) {
+                        if(layerMsg.msg(res.code,"设置")){
+                            product.closeIndex();
+                        }
+                    }
                 });
                 return false;
             });
@@ -98,6 +125,8 @@ layui.use(['layer', 'form', 'table'], function () {
                     let ids = [];
                     ids.push(data.id);
                     product.submitDelAction(ids);
+                }else if(layEvent === "setfg"){
+                    product.setFightGroup(data.id);
                 }
             });
             //复选框批量操作
@@ -126,6 +155,25 @@ layui.use(['layer', 'form', 'table'], function () {
             $('#adduser').on('click', function () {
                 window.location = 'add.html'
             });
+
+            $("#delset").click(function () {
+                if (product.myLock==="POST"){
+                    return false;
+                }
+                let id = $("#proId").val();
+                let ids = [];
+                ids.push(id);
+                $.ajax({
+                    type:"DELETE",
+                    url:IP+"fightgroup/fightgroup",
+                    data:JSON.stringify(ids),
+                    success:(res)=>{
+                        if(layerMsg.msg(res.code,"删除")){
+                            product.closeIndex();
+                        }
+                    }
+                });
+            });
         },
         submitDelAction:function (array) {
             layer.confirm('确认删除吗？', {icon: 3}, function () {
@@ -140,6 +188,37 @@ layui.use(['layer', 'form', 'table'], function () {
                     }
                 });
             });
+        },
+        setFightGroup:function (id) {
+            $("#proId").val(id);
+            $.ajax({
+                type:"get",
+                url:IP+"fightgroup/fightgroup",
+                data:{id:id},
+                async:false,
+                success:(res)=>{
+                    if (res.code===0 && res.data){
+                        form.val("modelform", res.data);
+                        product.myLock = "PUT";
+                    }
+                }
+            });
+            this.index = layer.open({
+                type:1,
+                title:"拼团设置",
+                content:$("#fgmodel"),
+                area: ['400px', '300px'],
+                closeBtn:2,
+                end:()=>{
+                    $("#fgmodel")[0].reset();
+                    product.myLock = "POST";
+                }
+            });
+        },
+        closeIndex(){
+            if (this.index){
+                layer.close(this.index);
+            }
         }
     };
 

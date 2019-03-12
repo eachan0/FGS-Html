@@ -54,7 +54,37 @@
         </div>
     </div>
 </div>
+
+<form class="layui-form" action="" id="fgmodel" style="display: none;margin: 20px 20px;" lay-filter="modelform">
+    <input type="hidden" name="proId" id="proId" value="-1">
+    <div class="layui-form-item">
+        <label class="layui-form-label">开始时间：</label>
+        <div class="layui-input-inline">
+            <input type="text" name="startTime" id="time1" placeholder="请输入开始时间" autocomplete="off" class="layui-input" lay-verify="required">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">结束时间：</label>
+        <div class="layui-input-inline">
+            <input type="text" name="endTime" id="time2" placeholder="请输入结束时间" autocomplete="off" class="layui-input" lay-verify="required">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">总人数：</label>
+        <div class="layui-input-inline">
+            <input type="text" name="totalNum" placeholder="请输入总人数" autocomplete="off" class="layui-input" lay-verify="required|number">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn layui-btn-sm layui-btn-normal" lay-submit lay-filter="formDemo1">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-sm layui-btn-primary">重置</button>
+            <button type="button" class="layui-btn layui-btn-sm layui-btn-danger" id="delset">删除设置</button>
+        </div>
+    </div>
+</form>
 <script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="setfg">拼团设置</a>
     <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
 </script>

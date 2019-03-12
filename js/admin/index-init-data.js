@@ -134,7 +134,7 @@ layui.use(['layer','form'], function () {
                 type:"POST",
                 async: false,
                 success:function () {
-                    localStorage.removeItem("user_token");
+                    localStorage.clear();
                     parent.window.location = "login.html";
                 }
             });
