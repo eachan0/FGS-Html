@@ -101,7 +101,7 @@ layui.use(['layer', 'form', 'table','laydate'], function () {
             });
             form.on('submit(formDemo1)', function (data) {
                 $.ajax({
-                    type:product.myLock,
+                    type:"POST",
                     url:IP+"fightgroup/fightgroup",
                     data:JSON.stringify(data.field),
                     success:function (res) {

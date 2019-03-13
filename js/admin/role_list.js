@@ -172,6 +172,7 @@ layui.use(['layer', 'form', 'table'], function () {
                         data: JSON.stringify(arry),
                         success: function (result) {
                             layerMsg.msg(result.code, '删除', 1000);
+                            table.reload('idTest');
                         }
                     });
                 }
