@@ -92,10 +92,15 @@ layui.use(['layer','form'], function () {
                         msg = "连接超时";
                     } else {
                         let response = null;
-                        if(typeof xhr.responseText =="string"){
-                            response = JSON.parse(xhr.responseText);
-                        }else {
-                            response = xhr.responseText;
+                        try {
+                            if(typeof xhr.responseText =="string"){
+                                response = JSON.parse(xhr.responseText);
+                            }else {
+                                response = xhr.responseText;
+                            }
+                        }catch (e) {
+                            response = {};
+                            response.response.message = "连接超时";
                         }
                         msg = response.message;
                         if (response.code == 401) {
