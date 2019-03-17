@@ -100,7 +100,7 @@ layui.use(['layer','form'], function () {
                             }
                         }catch (e) {
                             response = {};
-                            response.response.message = "连接超时";
+                            response.message = "连接超时";
                         }
                         msg = response.message;
                         if (response.code == 401) {
