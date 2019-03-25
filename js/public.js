@@ -5,7 +5,7 @@ layui.use(["layer"], function () {
         $ = layui.$;
     $.ajaxSetup({
         cache: false,
-        timeout: 18000,
+        timeout: 8000,
         type: "post",
         contentType: "application/json; charset=utf-8",
         dataType: 'json',
