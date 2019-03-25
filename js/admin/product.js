@@ -38,7 +38,8 @@ layui.use(['layer', 'form', 'table','laydate'], function () {
                         hide: true
                     }, {
                         field: 'name',
-                        title: '商品名称'
+                        title: '商品名称',
+                        width: 150
                     }, {
                         field: 'photo',
                         title: '图片',
@@ -47,17 +48,19 @@ layui.use(['layer', 'form', 'table','laydate'], function () {
                             str = str.replace(/\ +/g,"");
                             str = str.replace(/[\r\n]/g,"");
                             return '<img style="width: 100px;" src="'+str+'"/>'
-                        }
+                        },
+                        width: 150
                     }, {
                         field: 'desc',
-                        title: '描述',
-                        width: 150
+                        title: '描述'
                     }, {
                         field: 'price',
                         title: '单价',
+                        width: 100
                     }, {
                         field: 'tuanPrice',
                         title: '团购单价',
+                        width: 100
                     },{
                         fixed: 'right',
                         width: 300,
